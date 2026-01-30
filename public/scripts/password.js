@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Backend URL
 
-  const BACKEND_URL = "http://localhost:3003";
+  const BACKEND_URL = "https://valentine-jsas.onrender.com";
   console.log(BACKEND_URL);
   // Helper function to show messages
   function showMessage(text, type) {

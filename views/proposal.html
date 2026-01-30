@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For my bhai, Preesha ❤️</title>
+  
+  <!-- External Resources -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
+  <!-- Local Resources -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <script defer src="/scripts/main.js"></script>
+  
+  <!-- Authentication Check Script -->
+  <script>
+    // Check if user is authenticated BEFORE loading page
+    document.addEventListener('DOMContentLoaded', function() {
+        const isAuthenticated = localStorage.getItem("valentine_authenticated");
+        const authTime = localStorage.getItem("valentine_auth_time");
+        
+        // Session valid for 15 mins (900000 milliseconds)
+        const SESSION_TIMEOUT = 900000;
+        const currentTime = Date.now();
+        const authTimeNum = parseInt(authTime) || 0;
+        
+        // Check authentication
+        if (!isAuthenticated || (currentTime - authTimeNum) > SESSION_TIMEOUT) {
+            // Not authenticated or session expired
+            localStorage.removeItem("valentine_authenticated");
+            localStorage.removeItem("valentine_auth_time");
+            localStorage.removeItem("valentine_session");
+            
+            // Redirect to login page
+            alert("🔒 Please login to access this special Valentine's message! 💖");
+            window.location.href = "/proposal";
+            return;
+        }
+        
+        // Authentication successful - continue loading page
+        console.log("✅ Access granted to Valentine's proposal");
+        
+        // Set auto-logout after session timeout
+        const timeLeft = SESSION_TIMEOUT - (currentTime - authTimeNum);
+        setTimeout(() => {
+            localStorage.removeItem("valentine_authenticated");
+            localStorage.removeItem("valentine_auth_time");
+            alert("Session expired. Please login again! 💖");
+            window.location.href = "index.html";
+        }, timeLeft);
+    });
+  </script>
+</head>
+<body>
+  <!-- Background Elements -->
+  <div class="romantic-bg"></div>
+  <div class="stars" id="stars"></div>
+
+  <!-- Main Card -->
+  <div class="card">
+    <h1>Hey Vienna 💖</h1>
+    <p class="intro">This is my official proposal to ask you out for Valentine's Day!</p>
+    
+    <!-- Reasons Section -->
+    <h2 class="section-title">Why You Should Say Yes</h2>
+    <div class="reasons-container">
+      <ol class="reasons-list">
+        <li>You can go for bike rides with me anytime (except during my meetings) <span class="heart-emoji">✨</span></li>
+        <li>I'll always save the last bite for you!</li>
+        <li>Our freaks match perfectly, and I don't think we'll find a better fit than each other <span class="heart-emoji">🤝</span></li>
+        <li>I can teach you how to ride through traffic without fear! <span class="heart-emoji">⚡</span></li>
+        <li>Making you smile is my favorite thing to do <span class="heart-emoji">😊</span></li>
+        <li>I'll listen to every story you have, especially the quiet ones you keep tucked away <span class="heart-emoji">📖</span></li>
+        <li>This isn't just any love story, it's our rom-com, and I already know it's my favorite <span class="heart-emoji">🎬</span></li>
+      </ol>
+    </div>
+
+    <!-- Photo Gallery Section -->
+    <div class="photo-gallery">
+      <h2 class="section-title">And here's the most important reason: we look beautiful together!</h2>
+      <div class="gallery-grid">
+        <div class="photo-frame">
+          <img src="https://uploads.onecompiler.io/438sym7ts/44c4cx2bw/IMG-20260128-WA0062.jpg" alt="Memory 1">
+          <div class="photo-caption">Memory 1</div>
+        </div>
+        <div class="photo-frame">
+          <img src="https://uploads.onecompiler.io/438sym7ts/44c4cx2bw/IMG_20260102_023507_480.jpg" alt="Memory 2">
+          <div class="photo-caption">Memory 2</div>
+        </div>
+        <div class="photo-frame">
+          <img src="https://uploads.onecompiler.io/438sym7ts/44c4cx2bw/IMG-20260127-WA0031.jpg" alt="Memory 3">
+          <div class="photo-caption">Memory 3</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons Section -->
+    <div class="buttons-container">
+      <div class="buttons">
+        <button id="yes">Yes, Absolutely! 💖</button>
+        <button id="no">No, Maybe Later 🙈</button>
+      </div>
+    </div>
+    
+    <!-- Admin Link -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+      <a href="/admin" 
+         style="text-decoration: none; color: rgba(255,255,255,0.3); font-size: 12px;"
+         onmouseover="this.style.color='#ff4d6d'"
+         onmouseout="this.style.color='rgba(255,255,255,0.3)'">
+        ⚙️ Admin
+      </a>
+    </div>
+    
+    <!-- Response Display -->
+    <p id="response"></p>
+  </div>
+</body>
+</html>

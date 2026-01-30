@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔐 For Vienna's Eyes Only</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/password.css">
+
+</head>
+<body>
+    <div class="password-container">
+        <div class="lock-icon">🔒</div>
+        <h1>For My Vienna Only 💖</h1>
+        <p class="subtitle">This message is specially encrypted for your eyes only</p>
+        
+        <div class="password-box">
+            <p>Enter the secret password to unlock my Valentine's proposal:</p>
+            <p class="hint">💡 Hint: The first thing I want to say when I see you</p>
+            
+            <div class="input-group">
+                <input type="password" id="passwordInput" placeholder="Type the password here..." autocomplete="off">
+                <button id="unlockBtn">Unlock My Heart 💖</button>
+            </div>
+            
+            <div class="attempts">
+                Attempts: <span id="attemptCount">0</span>/3
+            </div>
+            
+            <div id="message" class="message"></div>
+            
+            <div class="extra-hint">
+                <button id="showHint" class="hint-btn">Need another hint? 🤔</button>
+                <p id="extraHint" class="hidden-hint">
+                    It's just one word... and it starts with "H" 😉
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Made with ❤️ for the most special person
+        </div>
+    </div>
+    
+    <script src="/scripts/password.js"></script>
+</body>
+</html>

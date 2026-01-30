@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For my bhai, Preesha ❤️</title>
+  <title>Preesha ❤️</title>
   
   <!-- External Resources -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -49,18 +49,320 @@
             alert("Session expired. Please login again! 💖");
             window.location.href = "index.html";
         }, timeLeft);
+        
+        // Initialize countdown timer (moved from external script)
+        initCountdown();
     });
+    
+    // Countdown Timer Function
+    function initCountdown() {
+      // Set target date to Feb 12, 2026, 5:00 PM IST
+      const targetDate = new Date('February 12, 2026 17:00:00 GMT+0530');
+      
+      function updateCountdown() {
+        const now = new Date();
+        const timeDiff = targetDate - now;
+        
+        if (timeDiff > 0) {
+          const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+          
+          // Update the countdown display
+          document.getElementById('countdown-days').textContent = days;
+          document.getElementById('countdown-hours').textContent = hours;
+          document.getElementById('countdown-minutes').textContent = minutes;
+          document.getElementById('countdown-seconds').textContent = seconds;
+          
+          // Update progress bar
+          const totalDays = 365 * 2; // Approx 2 years from 2024 to 2026
+          const daysPassed = totalDays - days;
+          const progressPercentage = Math.min((daysPassed / totalDays) * 100, 100);
+          document.getElementById('countdown-progress').style.width = `${progressPercentage}%`;
+        } else {
+          // Countdown finished
+          document.getElementById('countdown-timer').innerHTML = 
+            '<div class="countdown-finished">💝 Happy Valentine\'s Day! 💝<br><span class="subtext">It\'s finally here! Let\'s celebrate! 🎉</span></div>';
+        }
+      }
+      
+      // Update countdown every second
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
   </script>
+  
+  <style>
+    /* Additional CSS for music player and countdown */
+    .music-player {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 50px;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 8px 32px rgba(255, 77, 109, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .music-player:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+    
+    .music-info {
+      display: flex;
+      flex-direction: column;
+      color: white;
+    }
+    
+    .song-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #ff4d6d;
+    }
+    
+    .song-artist {
+      font-size: 12px;
+      opacity: 0.8;
+    }
+    
+    .music-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .music-btn {
+      background: #ff4d6d;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(255, 77, 109, 0.4);
+    }
+    
+    .music-btn:hover {
+      transform: scale(1.1);
+      background: #ff3357;
+    }
+    
+    .volume-slider {
+      width: 80px;
+      -webkit-appearance: none;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      outline: none;
+    }
+    
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #ff4d6d;
+      cursor: pointer;
+    }
+    
+    .countdown-container {
+      background: linear-gradient(135deg, rgba(255, 77, 109, 0.15), rgba(199, 44, 72, 0.15));
+      border-radius: 20px;
+      padding: 25px;
+      margin: 30px auto;
+      max-width: 800px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+    }
+    
+    .countdown-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 30px;
+  color: white;
+  margin-bottom: 15px;
+  padding: 10px 25px;
+  background: linear-gradient(135deg, rgba(255, 77, 109, 0.2), rgba(199, 44, 72, 0.2));
+  border-radius: 15px;
+  display: inline-block;
+  border: 1px solid rgba(255, 77, 109, 0.3);
+  backdrop-filter: blur(5px);
+  box-shadow: 0 4px 15px rgba(255, 77, 109, 0.15);
+}
+    
+    .countdown-subtitle {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 25px;
+    }
+    
+    .countdown-display {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+    
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 15px 10px;
+      min-width: 100px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    .countdown-value {
+      font-size: 42px;
+      font-weight: 700;
+      color: white;
+      text-shadow: 0 2px 8px rgba(255, 77, 109, 0.5);
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .countdown-label {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+    
+    .countdown-progress-container {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    
+    .countdown-progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, #ff4d6d, #ff8fa3);
+      border-radius: 5px;
+      width: 0%;
+      transition: width 1s ease;
+    }
+    
+    .countdown-finished {
+      font-size: 32px;
+      color: #ff4d6d;
+      font-weight: 700;
+      padding: 30px;
+      animation: pulse 2s infinite;
+    }
+    
+    .subtext {
+      font-size: 18px;
+      margin-top: 10px;
+      display: block;
+      color: white;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @media (max-width: 768px) {
+      .music-player {
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        justify-content: space-between;
+        padding: 8px 15px;
+      }
+      
+      .countdown-display {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .countdown-unit {
+        min-width: 80px;
+        padding: 10px 5px;
+      }
+      
+      .countdown-value {
+        font-size: 32px;
+      }
+      
+      .countdown-title {
+        font-size: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Background Elements -->
   <div class="romantic-bg"></div>
   <div class="stars" id="stars"></div>
+  
+  <!-- Music Player -->
+  <div class="music-player">
+    <div class="music-info">
+      <span class="song-title">Vienna</span>
+      <span class="song-artist">Billy Joel</span>
+    </div>
+    <div class="music-controls">
+      <button class="music-btn" id="play-btn">▶️</button>
+      <button class="music-btn" id="pause-btn">⏸️</button>
+      <input type="range" min="0" max="100" value="50" class="volume-slider" id="volume-slider">
+    </div>
+  </div>
 
   <!-- Main Card -->
   <div class="card">
     <h1>Hey Vienna 💖</h1>
     <p class="intro">This is my official proposal to ask you out for Valentine's Day!</p>
+    
+    <!-- Countdown Timer Section -->
+    <div class="countdown-container">
+      <h2 class="countdown-title">Counting Down to Our Valentine's Day</h2>
+      <p class="countdown-subtitle">February 12, 2026 · 5:00 PM IST</p>
+      
+      <div class="countdown-display" id="countdown-timer">
+        <div class="countdown-unit">
+          <span class="countdown-value" id="countdown-days">0</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" id="countdown-hours">0</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" id="countdown-minutes">0</span>
+          <span class="countdown-label">Minutes</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-value" id="countdown-seconds">0</span>
+          <span class="countdown-label">Seconds</span>
+        </div>
+      </div>
+      
+      <div class="countdown-progress-container">
+        <div class="countdown-progress-bar" id="countdown-progress"></div>
+      </div>
+    </div>
     
     <!-- Reasons Section -->
     <h2 class="section-title">Why You Should Say Yes</h2>
@@ -117,5 +419,72 @@
     <!-- Response Display -->
     <p id="response"></p>
   </div>
+  
+  <!-- Music Player Script -->
+  <script>
+    // Music player functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create audio element with a romantic song
+      const audio = new Audio('/audios/Vienna.webm');
+      audio.loop = true;
+      audio.volume = 0.5;
+      
+      // Get UI elements
+      const playBtn = document.getElementById('play-btn');
+      const pauseBtn = document.getElementById('pause-btn');
+      const volumeSlider = document.getElementById('volume-slider');
+      
+      // Play button click handler
+      playBtn.addEventListener('click', function() {
+        audio.play().catch(e => {
+          console.log("Audio play failed:", e);
+          alert("Please interact with the page first to play music!");
+        });
+        playBtn.style.background = '#ff3357';
+        pauseBtn.style.background = '#ff4d6d';
+        
+        // Trigger confetti when music starts
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      });
+      
+      // Pause button click handler
+      pauseBtn.addEventListener('click', function() {
+        audio.pause();
+        pauseBtn.style.background = '#ff3357';
+        playBtn.style.background = '#ff4d6d';
+      });
+      
+      // Volume slider handler
+      volumeSlider.addEventListener('input', function() {
+        audio.volume = volumeSlider.value / 100;
+      });
+      
+      // Auto-play on user interaction (for better UX)
+      document.body.addEventListener('click', function initAudio() {
+        // This will enable audio context on first user interaction
+        if (audio.paused) {
+          // Just prepare the audio, don't autoplay
+          audio.load();
+        }
+        document.body.removeEventListener('click', initAudio);
+      });
+      
+      // Show a welcome message with music suggestion
+      setTimeout(() => {
+        if (audio.paused) {
+          const playMusic = confirm("🎵 Would you like some romantic background music while you read this?");
+          if (playMusic) {
+            audio.play().catch(e => console.log("Autoplay prevented:", e));
+            playBtn.style.background = '#ff3357';
+            pauseBtn.style.background = '#ff4d6d';
+          }
+        }
+      }, 2000);
+    });
+  </script>
 </body>
 </html>
